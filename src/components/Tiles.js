@@ -13,17 +13,16 @@ const content= ()=>{
         <>
             <p>Specialty:{specialty}</p>
             <p>Weight: {weight}</p>
-            <p>Greased:{greased}</p>
+            <p>Greased:{greased? "👍" : "👎" }</p>
             <p>Highest Medal Achieved: {medal}</p>
         </>
     )
 }
 
 	return (        
-        <div className="ui grid container">
-            <div className="ui eight wide column">
+            <div className="ui card eight wide column pigTile">
                 <div className="ui link cards">
-                    <div className="card" onClick={handleClick}>
+                    <div className="card"  onClick={handleClick}>
                         <div className="image">
                             <img src={image} alt={name} />
                         </div>
@@ -34,7 +33,6 @@ const content= ()=>{
                     </div>        
                 </div>
             </div>
-        </div>
 	);
 };
 
