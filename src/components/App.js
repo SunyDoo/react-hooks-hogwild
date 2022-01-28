@@ -15,15 +15,22 @@ function App() {
 		setGreasedList((greasedList)=>!greasedList)
 	}
 
+	
+
+	function sortbyWeight(){
+		setFilterList(hogs.sort((a, b) => a.weight - b.weight))
+	}
+	
 
 
 	
-	console.log(hogs)
+	// console.log(hogs)
 	return (
 		<div className="ui grid container App">
 			<div className="sixteen wide column centered">
 				<Nav />
 				<GreaseButton onClick={handleClick} greasedList={greasedList} />
+				<button onClick={sortbyWeight}>Sort by Weight</button>
 			</div>
 			<div className="eight wide column centered">
 				<div className="ui two stackable cards">
