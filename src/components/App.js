@@ -1,36 +1,47 @@
 import React, {useState} from "react";
 import Nav from "./Nav";
 import Tiles from "./Tiles"
-import GreaseButton from "./GreaseButton"
+import Buttons from "./Buttons"
 
 import hogs from "../porkers_data";
 
 function App() {
-	const [filterList, setFilterList] = useState(hogs)
+	const sortedByName = hogs.sort((a, b) => {
+		return (a.name > b.name) ? 1 : -1
+	})
+	const [filterList, setFilterList] = useState(sortedByName)
 	const [greasedList, setGreasedList] = useState(true)
-
+	const [sorted, setSorted] = useState (true)
+	
+	
+	
 	function handleClick(){
 		const filter = hogs.filter((pig)=> (greasedList? pig.greased : pig))
 		setFilterList(filter)
 		setGreasedList((greasedList)=>!greasedList)
 	}
-
 	
-
+	// console.log(sortedName)
+	
+	// const pigsToDisplay = 
+	
+	
 	function sortbyWeight(){
-		setFilterList(hogs.sort((a, b) => a.weight - b.weight))
+		const sortedByWeight = filterList.sort((a, b) => {
+			return a.weight - b.weight})
+		sorted? setFilterList(sortedByWeight) : setFilterList(sortedByName)
+		setSorted((sorted)=>!sorted)		
 	}
 	
 
 
 	
-	// console.log(hogs)
+	// console.log(pigsToDisplay)
 	return (
 		<div className="ui grid container App">
 			<div className="sixteen wide column centered">
 				<Nav />
-				<GreaseButton onClick={handleClick} greasedList={greasedList} />
-				<button onClick={sortbyWeight}>Sort by Weight</button>
+				<Buttons onGrease={handleClick} greasedList={greasedList} sorted={sorted} onClick={sortbyWeight} />
 			</div>
 			<div className="eight wide column centered">
 				<div className="ui two stackable cards">
